@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>Login</h1>
+    <div>
+        <form action="/api/user/login" method="POST">
+            <br>
+            <label for="userEmail">Email : </label>
+            <input type="email" name="email" id="userEmail" placeholder="Email">
+            <br>
+            <br>
+            <label for="passkey">Your Password : </label>
+            <input type="password" name="password" placeholder="Enter Your Password" id="passkey">
+            <br>
+            <br>
+            <button type="submit">LOGIN</button>
+        </form>
+         <p>Haven't registered yet? 
+            <a href="/api/user/signup">Kindly Register</a>
+        </p>
+    </div>
+
+    <div>
+        <% if (locals.error) { %>
+            <%= error %>
+         
+        <% } %>
+    </div>
+</body>
+</html>

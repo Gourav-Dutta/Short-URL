@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Signup</h1>
+    <div>
+        <form action="/api/user/signup" method="POST">
+            <label for="userNAme">Enter Name : </label>
+            <input type="text" name="name" placeholder="Enter your full name" id="userNAme">
+            <br>
+            <br>
+            <label for="userEmail">Email : </label>
+            <input type="email" name="email" id="userEmail" placeholder="Email">
+            <br>
+            <br>
+            <label for="passkey">Your Password : </label>
+            <input type="password" name="password" placeholder="Enter Your Password" id="passkey">
+            <br>
+            <br>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already registered? 
+            <a href="/api/user/login">Kindly Login</a>
+        </p>
+    </div>
+</body>
+</html>
