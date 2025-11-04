@@ -22,8 +22,6 @@ model ShortUrl {
   name         String    @default("")
   createdById  Int       
   createdBy    User      @relation(fields:[createdById], references: [id])
-
-
 }
 
 model User{
@@ -31,8 +29,8 @@ model User{
   name       String?
   email      String @unique
   password   String
+  role       String @default("NORMAL")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
   shortUrls  ShortUrl[]
-
 }

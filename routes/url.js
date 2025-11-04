@@ -4,6 +4,7 @@ import { handleGenerateNewShortURl,
         handleGetAnalytics,
         handleGetAllURL,
         handleStaticURL } from '../controllers/url.js';
+import { restrictTo } from '../middlewares/url.js'; 
 
 const router = Router();
 

@@ -6,7 +6,8 @@ const prisma = new PrismaClient();
 
 
 async function handleGenerateNewShortURl(req, res) {
-
+    console.log(req.user);
+    
     const body = req.body;
 
     if(!body.url) return res.status(400).json({ error : "URL is must required"});
@@ -55,16 +56,17 @@ async function handleGetAnalytics (req, res) {
     const myUrl = req.params.shortUrl;
     console.log(myUrl);
     
-    const user = await prisma.shortUrl.findUnique({
+    const Domain = await prisma.shortUrl.findUnique({
         where : {shortCode : myUrl},
     });
-    if(!user){
+    if(!Domain){
      return res.status(404).json({ error: "Short URL not found" });
     }
     return res.status(202).json({
         message : "User founded",
-        click :  user.clicks,
-        user : user,
+        click :  Domain.clicks,
+        Created_By : Domain.createdById, 
+        user : Domain,
     });
 
 }
@@ -86,8 +88,7 @@ async function handleStaticURL(req, res){
 
    const AllURL = await prisma.shortUrl.findMany();
     return res.render('home', {
-        urls : AllURL,
-       
+        urls : AllURL,  
     });
 }
 

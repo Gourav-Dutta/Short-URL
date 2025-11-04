@@ -9,7 +9,8 @@ async function handleUserSignup(req, res){
     const payload = {
         name : req.body.name,
         email : req.body.email,
-        password : req.body.password 
+        password : req.body.password ,
+        role : req.body.role || "NORMAL"
     };
 
     const user = await prisma.user.create({
@@ -53,9 +54,30 @@ async function handleUserLogin(req, res) {
         })
     };
 
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie("uid", sessionId);
+
+    // STATEFULL AUTHENTICATION -> 
+
+    // const sessionId = uuidv4();
+    // setUser(sessionId, user);
+    // res.cookie("uid", sessionId);
+
+
+    // STATELESSR AUTHORIZATION ->
+
+     const token = setUser(user);
+
+     // 1. THROUGH COOKIE ->
+
+     //  res.cookie("uid", token);
+
+     // 2. THROUGH HEADERS -> 
+
+    //  res.json({
+    //     token : token 
+    //  })
+
+     res.cookie("token", token);
+
     return res.redirect("/url/home");
 }
 
